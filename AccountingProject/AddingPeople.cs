@@ -29,12 +29,26 @@ namespace AccountingProject
 
         private void AddingPeople_Load(object sender, EventArgs e)
         {
+            // Select the item and subitems when selection is made.
+            listViewPeople.FullRowSelect = true;
+            // Display grid lines.
+            listViewPeople.GridLines = true;
+            // Sort the items in the list in ascending order.
+            listViewPeople.Sorting = SortOrder.Ascending;
+            listViewPeople.Columns.Add("Име");
+            listViewPeople.Columns.Add("ID");
+            listViewPeople.Columns.Add("isNew");
             listViewPeople.MultiSelect = false;
             if (!LoadingDB.IsDBEmpty())
             {
-                foreach (Person a in Person.allPeople)
+                foreach (Worker a in Worker.allWorkers)
                 {
-                    listViewPeople.Items.Add(a.wholeName+";"+a.id+";old");
+                    ListViewItem item = new ListViewItem();
+                    item.SubItems.Add(worker.wholeName);
+                    item.SubItems.Add(worker.id);
+                    item.SubItems.Add("old");
+                    listViewPeople.Items.Add(item);
+                    //listViewPeople.Items.Add(a.wholeName+";"+a.id+";old");
                 }
             }
         }
@@ -178,6 +192,8 @@ namespace AccountingProject
                 }
             }
             mainPage.Reload();
+            LoadingDB.UpdateCounterDB();
+            LoadingDB.SerializeWorkers(Worker.allWorkers);
             this.Close();
         }
 

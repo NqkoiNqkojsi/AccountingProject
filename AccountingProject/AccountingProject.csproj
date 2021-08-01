@@ -121,6 +121,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Database\counter.json" />
     <None Include="Database\people.json" />
     <None Include="Database\shiftdays.json" />
     <None Include="Database\workdays.json" />
@@ -141,6 +142,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

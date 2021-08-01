@@ -97,6 +97,7 @@ namespace AccountingProject
             person.AddWorkDay(day);
             Worker.allWorkers.Add(person);
             mainPage.Reload();
+            LoadingDB.UpdateCounterDB();
             LoadingDB.SerializeWorkers(Worker.allWorkers);
             LoadingDB.SerializeWorkDays(WorkDay.allDays);
             RestartForm();

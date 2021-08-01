@@ -11,6 +11,14 @@ namespace AccountingProject.Controls
 {
     class LoadingDB
     {
+        static public int counterWorker;
+        static public int counterWorkDays;
+        static public int counterShiftDays;
+
+        public int _counterWorker;
+        public int _counterWorkDays;
+        public int _counterShiftDays;
+
         static public bool IsDBEmpty()
         {
             string text = System.IO.File.ReadAllText(@"..\..\Database\workers.json");
@@ -24,6 +32,30 @@ namespace AccountingProject.Controls
                 return false;
             }
         }
+        static public void MakeDBReady()
+        {
+            string text = System.IO.File.ReadAllText(@"..\..\Database\counter.json");
+            try
+            {
+                 LoadingDB obj =JsonConvert.DeserializeObject<LoadingDB>(text);
+                LoadingDB.counterWorker = obj._counterWorker;
+                LoadingDB.counterWorkDays = obj._counterWorkDays;
+                LoadingDB.counterShiftDays = obj._counterShiftDays;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+        static public void UpdateCounterDB()
+        {
+            LoadingDB obj = new LoadingDB();
+            obj._counterShiftDays = ShiftDay.counter;
+            obj._counterWorkDays = WorkDay.counter;
+            obj._counterWorker = Worker.counter;
+            System.IO.File.WriteAllText(@"..\..\Database\workers.json", JsonConvert.SerializeObject(obj));
+        }
+
         static public List<Person> DeserializePeople()
         {
             string text = System.IO.File.ReadAllText(@"..\..\Database\people.json");
@@ -38,6 +70,7 @@ namespace AccountingProject.Controls
         }
         static public List<Worker> DeserializeWorkers()
         {
+            Worker.counter = LoadingDB.counterWorker;
             string text = System.IO.File.ReadAllText(@"..\..\Database\workers.json");
             try
             {
@@ -51,6 +84,7 @@ namespace AccountingProject.Controls
         }
         static public List<WorkDay> DeserializeWorkDays()
         {
+            WorkDay.counter = LoadingDB.counterWorkDays;
             string text = System.IO.File.ReadAllText(@"..\..\Database\workdays.json");
             try
             {
@@ -64,6 +98,7 @@ namespace AccountingProject.Controls
         }
         static public List<ShiftDay> DeserializeShiftDays()
         {
+            ShiftDay.counter = LoadingDB.counterShiftDays;
             string text = System.IO.File.ReadAllText(@"..\..\Database\shiftdays.json");
             try
             {

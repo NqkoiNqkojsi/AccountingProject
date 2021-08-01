@@ -12,7 +12,7 @@ namespace AccountingProject.Models
         public string date { get; set; }
         public int weekDay { get; set; }//0-Monday, 1-Tuesday ... 6-Sunday
         public string id { get; set; }
-        private static int counter=0;
+        public static int counter=0;
         public static List<ShiftDay> allDays = new List<ShiftDay>();
 
         public ShiftDay(string type, string date, int weekDay)

@@ -24,6 +24,7 @@ namespace AccountingProject
             }
             else
             {
+                LoadingDB.MakeDBReady();
                 Person.allPeople = LoadingDB.DeserializePeople();
                 Worker.allWorkers = LoadingDB.DeserializeWorkers();
                 WorkDay.allDays = LoadingDB.DeserializeWorkDays();
