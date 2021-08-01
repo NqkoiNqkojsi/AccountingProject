@@ -122,6 +122,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="Database\people.json" />
+    <None Include="Database\shiftdays.json" />
     <None Include="Database\workdays.json" />
     <None Include="Database\workers.json" />
     <None Include="packages.config" />

@@ -26,7 +26,8 @@ namespace AccountingProject
             {
                 Person.allPeople = LoadingDB.DeserializePeople();
                 Worker.allWorkers = LoadingDB.DeserializeWorkers();
-                WorkDay.allDays = LoadingDB.DeserializeDays();
+                WorkDay.allDays = LoadingDB.DeserializeWorkDays();
+                ShiftDay.allDays = LoadingDB.DeserializeShiftDays();
                 Worker.MakeSummary();
                 Application.Run(new MainPage(false));
             }

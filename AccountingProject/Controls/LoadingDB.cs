@@ -45,10 +45,11 @@ namespace AccountingProject.Controls
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                return null;
             }
         }
-        static public List<WorkDay> DeserializeDays()
+        static public List<WorkDay> DeserializeWorkDays()
         {
             string text = System.IO.File.ReadAllText(@"..\..\Database\workdays.json");
             try
@@ -57,7 +58,21 @@ namespace AccountingProject.Controls
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                return null;
+            }
+        }
+        static public List<ShiftDay> DeserializeShiftDays()
+        {
+            string text = System.IO.File.ReadAllText(@"..\..\Database\shiftdays.json");
+            try
+            {
+                return JsonConvert.DeserializeObject<List<ShiftDay>>(text);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
             }
         }
         static public void SerializePeople(List<Person> workers)
@@ -71,6 +86,10 @@ namespace AccountingProject.Controls
         static public void SerializeWorkDays(List<WorkDay> workers)
         {
             System.IO.File.WriteAllText(@"..\..\Database\workdays.json", JsonConvert.SerializeObject(workers));
+        }
+        static public void SerializeShiftDays(List<ShiftDay> workers)
+        {
+            System.IO.File.WriteAllText(@"..\..\Database\shiftdays.json", JsonConvert.SerializeObject(workers));
         }
     }
 }

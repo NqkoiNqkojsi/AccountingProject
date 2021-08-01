@@ -66,6 +66,8 @@ namespace AccountingProject
             person.AddShiftDay(day);
             Worker.allWorkers.Add(person);
             mainPage.Reload();
+            LoadingDB.SerializeWorkers(Worker.allWorkers);
+            LoadingDB.SerializeShiftDays(ShiftDay.allDays);
             RestartForm();
         }
 

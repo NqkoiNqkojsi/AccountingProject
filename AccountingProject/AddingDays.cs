@@ -98,6 +98,7 @@ namespace AccountingProject
             Worker.allWorkers.Add(person);
             mainPage.Reload();
             LoadingDB.SerializeWorkers(Worker.allWorkers);
+            LoadingDB.SerializeWorkDays(WorkDay.allDays);
             RestartForm();
         }
 
