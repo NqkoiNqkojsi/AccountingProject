@@ -11,13 +11,20 @@ namespace AccountingProject.Controls
 {
     class LoadingDB
     {
-        static public int counterWorker;
-        static public int counterWorkDays;
-        static public int counterShiftDays;
+        static public int counterWorker=0;
+        static public int counterWorkDays=0;
+        static public int counterShiftDays=0;
 
         public int _counterWorker;
         public int _counterWorkDays;
         public int _counterShiftDays;
+
+        LoadingDB(int a, int b, int c)
+        {
+            _counterWorker = a;
+            _counterWorkDays = b;
+            _counterShiftDays = c;
+        }
 
         static public bool IsDBEmpty()
         {
@@ -37,23 +44,24 @@ namespace AccountingProject.Controls
             string text = System.IO.File.ReadAllText(@"..\..\Database\counter.json");
             try
             {
-                 LoadingDB obj =JsonConvert.DeserializeObject<LoadingDB>(text);
-                LoadingDB.counterWorker = obj._counterWorker;
-                LoadingDB.counterWorkDays = obj._counterWorkDays;
-                LoadingDB.counterShiftDays = obj._counterShiftDays;
+                Counter obj =JsonConvert.DeserializeObject<Counter>(text);
+                Console.WriteLine("Worker Counter: "+obj._counterWorker + '\n');
+                Counter.counterWorker = obj._counterWorker;
+                Counter.counterWorkDays = obj._counterWorkDays;
+                Counter.counterShiftDays = obj._counterShiftDays;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+                Counter.counterWorker = 0;
+                Counter.counterWorkDays = 0;
+                Counter.counterShiftDays = 0;
             }
         }
         static public void UpdateCounterDB()
         {
-            LoadingDB obj = new LoadingDB();
-            obj._counterShiftDays = ShiftDay.counter;
-            obj._counterWorkDays = WorkDay.counter;
-            obj._counterWorker = Worker.counter;
-            System.IO.File.WriteAllText(@"..\..\Database\workers.json", JsonConvert.SerializeObject(obj));
+            Counter obj = new Counter(Counter.counterWorker, Counter.counterWorkDays, Counter.counterShiftDays);
+            System.IO.File.WriteAllText(@"..\..\Database\counter.json", JsonConvert.SerializeObject(obj));
         }
 
         static public List<Person> DeserializePeople()
@@ -70,45 +78,54 @@ namespace AccountingProject.Controls
         }
         static public List<Worker> DeserializeWorkers()
         {
-            Worker.counter = LoadingDB.counterWorker;
             string text = System.IO.File.ReadAllText(@"..\..\Database\workers.json");
-            try
+            if (text.Length > 2)
             {
-                return JsonConvert.DeserializeObject<List<Worker>>(text);
+                try
+                {
+                    return JsonConvert.DeserializeObject<List<Worker>>(text);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Exception Worker= " + ex + '\n');
+                    return null;
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                return null;
-            }
+            return null;
         }
         static public List<WorkDay> DeserializeWorkDays()
         {
-            WorkDay.counter = LoadingDB.counterWorkDays;
             string text = System.IO.File.ReadAllText(@"..\..\Database\workdays.json");
-            try
+            if (text.Length > 2)
             {
-                return JsonConvert.DeserializeObject<List<WorkDay>>(text);
+                try
+                {
+                    return JsonConvert.DeserializeObject<List<WorkDay>>(text);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Exception WorkDay= " + ex + '\n');
+                    return null;
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                return null;
-            }
+            return null;
         }
         static public List<ShiftDay> DeserializeShiftDays()
         {
-            ShiftDay.counter = LoadingDB.counterShiftDays;
             string text = System.IO.File.ReadAllText(@"..\..\Database\shiftdays.json");
-            try
+            if (text.Length > 2)
             {
-                return JsonConvert.DeserializeObject<List<ShiftDay>>(text);
+                try
+                {
+                    return JsonConvert.DeserializeObject<List<ShiftDay>>(text);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Exception ShiftDay= " + ex + '\n');
+                    return null;
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                return null;
-            }
+            return null;
         }
         static public void SerializePeople(List<Person> workers)
         {

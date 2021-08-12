@@ -30,26 +30,18 @@ namespace AccountingProject
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.workerBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.workerBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panelSideBar = new System.Windows.Forms.Panel();
             this.buttonAddingPeople = new System.Windows.Forms.Button();
             this.buttonAddingShifts = new System.Windows.Forms.Button();
             this.buttonAddingLeave = new System.Windows.Forms.Button();
             this.buttonOpenMontlyReporter = new System.Windows.Forms.Button();
             this.listViewSummary = new System.Windows.Forms.ListView();
+            this.workerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.workerBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.panelSideBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.workerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.workerBindingSource1)).BeginInit();
-            this.panelSideBar.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // workerBindingSource
-            // 
-            this.workerBindingSource.DataSource = typeof(AccountingProject.Models.Worker);
-            // 
-            // workerBindingSource1
-            // 
-            this.workerBindingSource1.DataSource = typeof(AccountingProject.Models.Worker);
             // 
             // panelSideBar
             // 
@@ -115,6 +107,7 @@ namespace AccountingProject
             // listViewSummary
             // 
             this.listViewSummary.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listViewSummary.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewSummary.GridLines = true;
             this.listViewSummary.HideSelection = false;
             this.listViewSummary.Location = new System.Drawing.Point(218, 12);
@@ -122,8 +115,17 @@ namespace AccountingProject
             this.listViewSummary.Size = new System.Drawing.Size(922, 486);
             this.listViewSummary.TabIndex = 1;
             this.listViewSummary.UseCompatibleStateImageBehavior = false;
+            this.listViewSummary.View = System.Windows.Forms.View.List;
             this.listViewSummary.SelectedIndexChanged += new System.EventHandler(this.listViewSummary_SelectedIndexChanged);
             this.listViewSummary.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewSummary_MouseDoubleClick);
+            // 
+            // workerBindingSource
+            // 
+            this.workerBindingSource.DataSource = typeof(AccountingProject.Models.Worker);
+            // 
+            // workerBindingSource1
+            // 
+            this.workerBindingSource1.DataSource = typeof(AccountingProject.Models.Worker);
             // 
             // MainPage
             // 
@@ -135,9 +137,9 @@ namespace AccountingProject
             this.Name = "MainPage";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MainPage_Load);
+            this.panelSideBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.workerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.workerBindingSource1)).EndInit();
-            this.panelSideBar.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

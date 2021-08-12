@@ -35,17 +35,16 @@ namespace AccountingProject
             listViewPeople.GridLines = true;
             // Sort the items in the list in ascending order.
             listViewPeople.Sorting = SortOrder.Ascending;
-            listViewPeople.Columns.Add("Име");
-            listViewPeople.Columns.Add("ID");
-            listViewPeople.Columns.Add("isNew");
+            listViewPeople.Columns.Add("Име").Width=55;
+            listViewPeople.Columns.Add("ID").Width=4;
+            listViewPeople.Columns.Add("isNew").Width=5;
             listViewPeople.MultiSelect = false;
             if (!LoadingDB.IsDBEmpty())
             {
                 foreach (Worker a in Worker.allWorkers)
                 {
-                    ListViewItem item = new ListViewItem();
-                    item.SubItems.Add(worker.wholeName);
-                    item.SubItems.Add(worker.id);
+                    ListViewItem item = new ListViewItem(a.wholeName);
+                    item.SubItems.Add(a.id);
                     item.SubItems.Add("old");
                     listViewPeople.Items.Add(item);
                     //listViewPeople.Items.Add(a.wholeName+";"+a.id+";old");
@@ -143,7 +142,10 @@ namespace AccountingProject
                 {
                     worker = new Worker(textBoxFirstName.Text, textBoxSecondName.Text, textBoxLastName.Text, textBoxPosition.Text);
                     newWorkers.Add(worker);
-                    listViewPeople.Items.Add(worker.wholeName+";"+worker.id+";new");
+                    ListViewItem item = new ListViewItem(worker.wholeName);
+                    item.SubItems.Add(worker.id);
+                    item.SubItems.Add("new");
+                    listViewPeople.Items.Add(item);
                     RedactComponents(true);
                 }
                 else
@@ -152,7 +154,10 @@ namespace AccountingProject
                     oldWorkers.Add(worker);
                     worker.ChangeName(5, textBoxFirstName.Text, textBoxSecondName.Text, textBoxLastName.Text, textBoxPosition.Text);
                     newWorkers.Add(worker);
-                    listViewPeople.Items.Add(worker.wholeName + ";" + worker.id + ";new");
+                    ListViewItem item = new ListViewItem(worker.wholeName);
+                    item.SubItems.Add(worker.id);
+                    item.SubItems.Add("new");
+                    listViewPeople.Items.Add(item);
                     RedactComponents(true);
                 }
             }

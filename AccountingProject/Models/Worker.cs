@@ -17,7 +17,6 @@ namespace AccountingProject.Models
 
         public static List<Person> allPeople = new List<Person>();
 
-        public static int counter = 0;
         public List<WorkDay> daysLeaves = new List<WorkDay>();
         public List<ShiftDay> daysShift = new List<ShiftDay>();
         public static List<Worker> allWorkers = new List<Worker>();
@@ -33,9 +32,10 @@ namespace AccountingProject.Models
             this.firstName = firstName;
             this.lastName = lastName;
             this.secondName = secondName;
+            this.position = position;
             SaveName();
-            id = counter.ToString();
-            counter++;
+            id = Counter.counterWorker.ToString();
+            Counter.Increase(1);
         }
 
         public void AddWorkDay(WorkDay day)
@@ -120,13 +120,13 @@ namespace AccountingProject.Models
                 br[3]++;
             }
             StringBuilder daysCount = new StringBuilder();
-            daysCount.Append(br[0].ToString().PadLeft(7));
+            daysCount.Append(br[0].ToString().PadRight(7));
             daysCount.Append(" | ");
-            daysCount.Append(br[1].ToString().PadLeft(8));
+            daysCount.Append(br[1].ToString().PadRight(8));
             daysCount.Append(" | ");
-            daysCount.Append(br[2].ToString().PadLeft(8));
+            daysCount.Append(br[2].ToString().PadRight(8));
             daysCount.Append(" | ");
-            daysCount.Append(br[3].ToString().PadLeft(4));
+            daysCount.Append(br[3].ToString().PadRight(4));
             daysCount.Append(" | ");
             return daysCount.ToString();
         }
@@ -144,21 +144,22 @@ namespace AccountingProject.Models
                 br[3]++;
             }
             StringBuilder daysCount = new StringBuilder();
-            daysCount.Append(br[0].ToString().PadLeft(7));
+            daysCount.Append(br[0].ToString().PadRight(7));
             daysCount.Append(" | ");
-            daysCount.Append(br[1].ToString().PadLeft(7));
+            daysCount.Append(br[1].ToString().PadRight(7));
             daysCount.Append(" | ");
-            daysCount.Append(br[2].ToString().PadLeft(9));
+            daysCount.Append(br[2].ToString().PadRight(9));
             daysCount.Append(" | ");
-            daysCount.Append(br[3].ToString().PadLeft(4));
+            daysCount.Append(br[3].ToString().PadRight(4));
             daysCount.Append(" | ");
             return daysCount.ToString();
         }
 
         public static void MakeSummary()
         {
+            Summary.Clear();
             StringBuilder Sum=new StringBuilder();
-            Sum.Append("Name".PadLeft(55));
+            Sum.Append("Name".PadRight(55));
             Sum.Append("| ");
             Sum.Append("Отпуска");
             Sum.Append(" | ");
@@ -179,7 +180,7 @@ namespace AccountingProject.Models
             foreach (Worker person in allWorkers)
             {
                 Sum.Clear();
-                Sum.Append(person.wholeName.PadLeft(55));
+                Sum.Append(person.wholeName.PadRight(55));
                 Sum.Append("| ");
                 string stats;
                 stats= person.CountDaysLeave();

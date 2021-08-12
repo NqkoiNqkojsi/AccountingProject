@@ -76,6 +76,7 @@
     <Compile Include="MainPage.Designer.cs">
       <DependentUpon>MainPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Counter.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\ShiftDay.cs" />
     <Compile Include="Models\WorkDay.cs" />

@@ -76,6 +76,7 @@ namespace AccountingProject
             // listViewPeople
             // 
             this.listViewPeople.AutoArrange = false;
+            this.listViewPeople.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewPeople.HideSelection = false;
             this.listViewPeople.Location = new System.Drawing.Point(12, 201);
             this.listViewPeople.MultiSelect = false;
@@ -83,6 +84,7 @@ namespace AccountingProject
             this.listViewPeople.Size = new System.Drawing.Size(708, 238);
             this.listViewPeople.TabIndex = 3;
             this.listViewPeople.UseCompatibleStateImageBehavior = false;
+            this.listViewPeople.View = System.Windows.Forms.View.Details;
             this.listViewPeople.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // buttonRedact

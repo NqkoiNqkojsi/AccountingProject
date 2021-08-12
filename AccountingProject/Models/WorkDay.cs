@@ -26,8 +26,8 @@ namespace AccountingProject.Models
             this.end = end;
             this.note = note;
             this.vacationType = vacationType;
-            this.id = counter.ToString();
-            counter++;
+            this.id = Counter.counterWorkDays.ToString();
+            Counter.Increase(2);
             GetPeriod();
         }
         void GetPeriod()

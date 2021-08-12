@@ -26,6 +26,8 @@ namespace AccountingProject
         {
             Worker.MakeSummary();
             listViewSummary.Items.Clear();
+            Console.WriteLine("count= " + Worker.Summary.Count);
+            Console.WriteLine("count 1= " + Worker.allWorkers.Count);
             foreach (string items in Worker.Summary)
             {
                 listViewSummary.Items.Add(items);

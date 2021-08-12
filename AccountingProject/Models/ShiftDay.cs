@@ -12,7 +12,6 @@ namespace AccountingProject.Models
         public string date { get; set; }
         public int weekDay { get; set; }//0-Monday, 1-Tuesday ... 6-Sunday
         public string id { get; set; }
-        public static int counter=0;
         public static List<ShiftDay> allDays = new List<ShiftDay>();
 
         public ShiftDay(string type, string date, int weekDay)
@@ -20,8 +19,8 @@ namespace AccountingProject.Models
             this.type = type;
             this.date = date;
             this.weekDay = weekDay;
-            id = counter.ToString();
-            counter++;
+            id = Counter.counterShiftDays.ToString();
+            Counter.Increase(3);
         }
 
         public static string GetWeekDay(int index)
