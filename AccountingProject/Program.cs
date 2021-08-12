@@ -29,7 +29,10 @@ namespace AccountingProject
                 Worker.allWorkers = LoadingDB.DeserializeWorkers();
                 WorkDay.allDays = LoadingDB.DeserializeWorkDays();
                 ShiftDay.allDays = LoadingDB.DeserializeShiftDays();
-                Worker.MakeSummary();
+                foreach (Worker worker in Worker.allWorkers)
+                {
+                    worker.MakeSummary();
+                }
                 Application.Run(new MainPage(false));
             }
         }

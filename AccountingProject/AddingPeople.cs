@@ -35,9 +35,6 @@ namespace AccountingProject
             listViewPeople.GridLines = true;
             // Sort the items in the list in ascending order.
             listViewPeople.Sorting = SortOrder.Ascending;
-            listViewPeople.Columns.Add("Име").Width=55;
-            listViewPeople.Columns.Add("ID").Width=4;
-            listViewPeople.Columns.Add("isNew").Width=5;
             listViewPeople.MultiSelect = false;
             if (!LoadingDB.IsDBEmpty())
             {

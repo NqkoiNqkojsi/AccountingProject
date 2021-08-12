@@ -42,6 +42,9 @@ namespace AccountingProject
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.Име = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.еНов = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // textBoxFirstName
@@ -76,6 +79,10 @@ namespace AccountingProject
             // listViewPeople
             // 
             this.listViewPeople.AutoArrange = false;
+            this.listViewPeople.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Име,
+            this.ID,
+            this.еНов});
             this.listViewPeople.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewPeople.HideSelection = false;
             this.listViewPeople.Location = new System.Drawing.Point(12, 201);
@@ -182,6 +189,20 @@ namespace AccountingProject
             this.label4.TabIndex = 12;
             this.label4.Text = "Фамилно Име";
             // 
+            // Име
+            // 
+            this.Име.Text = "Име";
+            this.Име.Width = 300;
+            // 
+            // ID
+            // 
+            this.ID.Text = "Id";
+            // 
+            // еНов
+            // 
+            this.еНов.Text = "еНов";
+            this.еНов.Width = 100;
+            // 
             // AddingPeople
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -223,5 +244,8 @@ namespace AccountingProject
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ColumnHeader Име;
+        private System.Windows.Forms.ColumnHeader ID;
+        private System.Windows.Forms.ColumnHeader еНов;
     }
 }

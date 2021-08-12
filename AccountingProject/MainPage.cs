@@ -24,13 +24,15 @@ namespace AccountingProject
 
         public void Reload()
         {
-            Worker.MakeSummary();
             listViewSummary.Items.Clear();
-            Console.WriteLine("count= " + Worker.Summary.Count);
-            Console.WriteLine("count 1= " + Worker.allWorkers.Count);
-            foreach (string items in Worker.Summary)
+            foreach (Worker per in Worker.allWorkers)
             {
-                listViewSummary.Items.Add(items);
+                ListViewItem item = new ListViewItem(per.Summary[0]);
+                for(int i = 1; i < 9; i++)
+                {
+                    item.SubItems.Add(per.Summary[i]);
+                }
+                listViewSummary.Items.Add(item);
             }
         }
 

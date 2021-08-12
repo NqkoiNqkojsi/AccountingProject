@@ -38,6 +38,15 @@ namespace AccountingProject
             this.listViewSummary = new System.Windows.Forms.ListView();
             this.workerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.workerBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.Име = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Отпуска = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Болничен = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Семинар = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Общо = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Работни = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Почивни = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Празнични = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Общо2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelSideBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.workerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.workerBindingSource1)).BeginInit();
@@ -107,6 +116,16 @@ namespace AccountingProject
             // listViewSummary
             // 
             this.listViewSummary.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listViewSummary.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Име,
+            this.Отпуска,
+            this.Болничен,
+            this.Семинар,
+            this.Общо,
+            this.Работни,
+            this.Почивни,
+            this.Празнични,
+            this.Общо2});
             this.listViewSummary.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewSummary.GridLines = true;
             this.listViewSummary.HideSelection = false;
@@ -115,7 +134,7 @@ namespace AccountingProject
             this.listViewSummary.Size = new System.Drawing.Size(922, 486);
             this.listViewSummary.TabIndex = 1;
             this.listViewSummary.UseCompatibleStateImageBehavior = false;
-            this.listViewSummary.View = System.Windows.Forms.View.List;
+            this.listViewSummary.View = System.Windows.Forms.View.Details;
             this.listViewSummary.SelectedIndexChanged += new System.EventHandler(this.listViewSummary_SelectedIndexChanged);
             this.listViewSummary.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewSummary_MouseDoubleClick);
             // 
@@ -126,6 +145,51 @@ namespace AccountingProject
             // workerBindingSource1
             // 
             this.workerBindingSource1.DataSource = typeof(AccountingProject.Models.Worker);
+            // 
+            // Име
+            // 
+            this.Име.Text = "Име";
+            this.Име.Width = 209;
+            // 
+            // Отпуска
+            // 
+            this.Отпуска.Text = "Отпуска";
+            this.Отпуска.Width = 76;
+            // 
+            // Болничен
+            // 
+            this.Болничен.Text = "Болничен";
+            this.Болничен.Width = 83;
+            // 
+            // Семинар
+            // 
+            this.Семинар.Text = "Семинар";
+            this.Семинар.Width = 76;
+            // 
+            // Общо
+            // 
+            this.Общо.Text = "Общо";
+            this.Общо.Width = 83;
+            // 
+            // Работни
+            // 
+            this.Работни.Text = "Работни";
+            this.Работни.Width = 104;
+            // 
+            // Почивни
+            // 
+            this.Почивни.Text = "Почивни";
+            this.Почивни.Width = 87;
+            // 
+            // Празнични
+            // 
+            this.Празнични.Text = "Празнични";
+            this.Празнични.Width = 102;
+            // 
+            // Общо2
+            // 
+            this.Общо2.Text = "Общо2";
+            this.Общо2.Width = 133;
             // 
             // MainPage
             // 
@@ -154,6 +218,15 @@ namespace AccountingProject
         private System.Windows.Forms.Button buttonAddingPeople;
         private System.Windows.Forms.Button buttonAddingShifts;
         private System.Windows.Forms.Button buttonAddingLeave;
+        private System.Windows.Forms.ColumnHeader Име;
+        private System.Windows.Forms.ColumnHeader Отпуска;
+        private System.Windows.Forms.ColumnHeader Болничен;
+        private System.Windows.Forms.ColumnHeader Семинар;
+        private System.Windows.Forms.ColumnHeader Общо;
+        private System.Windows.Forms.ColumnHeader Работни;
+        private System.Windows.Forms.ColumnHeader Почивни;
+        private System.Windows.Forms.ColumnHeader Празнични;
+        private System.Windows.Forms.ColumnHeader Общо2;
     }
 }
 
