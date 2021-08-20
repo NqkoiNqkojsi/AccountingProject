@@ -14,6 +14,7 @@ namespace AccountingProject.Controls
         {
             List<string> searchedPeople = new List<string>();
             input = input.ToLower();
+            Console.WriteLine("Input= " + input + '\n');
             foreach(Worker worker in Worker.allWorkers.FindAll(person => person.wholeName.ToLower().StartsWith(input)))
             {
                 searchedPeople.Add(worker.wholeName);

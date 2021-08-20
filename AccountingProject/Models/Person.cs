@@ -11,7 +11,7 @@ namespace AccountingProject.Models
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string wholeName { get; set; }
-        public int id;
+        //public int id;
 
         public static List<Person> allPeople = new List<Person>();
 

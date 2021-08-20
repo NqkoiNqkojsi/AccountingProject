@@ -67,6 +67,13 @@
     <Compile Include="AddingShifts.Designer.cs">
       <DependentUpon>AddingShifts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Confrontation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Confrontation.Designer.cs">
+      <DependentUpon>Confrontation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ConfrontingDates.cs" />
     <Compile Include="Controls\LoadingDB.cs" />
     <Compile Include="Controls\MakingMonthlyReport.cs" />
     <Compile Include="Controls\Searching.cs" />
@@ -103,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddingShifts.resx">
       <DependentUpon>AddingShifts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Confrontation.resx">
+      <DependentUpon>Confrontation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainPage.resx">
       <DependentUpon>MainPage.cs</DependentUpon>

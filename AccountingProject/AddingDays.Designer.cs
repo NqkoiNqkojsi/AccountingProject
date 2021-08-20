@@ -280,8 +280,11 @@ namespace AccountingProject
             // Calendar
             // 
             this.Calendar.FirstDayOfWeek = System.Windows.Forms.Day.Monday;
-            this.Calendar.Location = new System.Drawing.Point(16, 9);
+            this.Calendar.Location = new System.Drawing.Point(9, 9);
+            this.Calendar.MaxSelectionCount = 365;
             this.Calendar.Name = "Calendar";
+            this.Calendar.ShowToday = false;
+            this.Calendar.ShowTodayCircle = false;
             this.Calendar.TabIndex = 0;
             this.Calendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.Calendar_DateChanged);
             // 

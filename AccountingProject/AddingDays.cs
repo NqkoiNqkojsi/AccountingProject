@@ -33,8 +33,10 @@ namespace AccountingProject
 
         }
 
+
         private void AddNamesToSearch(List<string> people)//save the names to a list
         {
+            listViewNames.Items.Clear();
             int i = 1;
             foreach(string person in people) {
                 if (i == 5) { break; }
@@ -88,19 +90,43 @@ namespace AccountingProject
             }
         }
 
+        public void Save()
+        {
+            this.Enabled = true;
+            if (ConfrontingDates.Complete == true && ConfrontingDates.Delete == false)
+            {
+                WorkDay day2 = new WorkDay(TranslateType(comboBoxType.SelectedItem.ToString()), textBoxStart.Text, textBoxEnd.Text, textBoxNote.Text, comboBoxVacation.SelectedItem.ToString());
+                Worker person = Worker.allWorkers.Find(x => x.GetWholeName() == textBoxName.Text);
+                Worker.allWorkers.Remove(person);
+                person.daysLeaves.Add(day2);
+                WorkDay.allDays.Add(day2);
+                Worker.allWorkers.Add(person);
+                person.MakeSummary();
+                mainPage.Reload();
+                LoadingDB.UpdateCounterDB();
+                LoadingDB.SerializeWorkers(Worker.allWorkers);
+                LoadingDB.SerializeWorkDays(WorkDay.allDays);
+            }
+            RestartForm();
+        }
+
         private void buttonSaveWorker_Click(object sender, EventArgs e)
         {
             CloseModals();
+            WorkDay day2 = new WorkDay(TranslateType(comboBoxType.SelectedItem.ToString()), textBoxStart.Text, textBoxEnd.Text, textBoxNote.Text, comboBoxVacation.SelectedItem.ToString());
             Worker person = Worker.allWorkers.Find(x => x.GetWholeName() == textBoxName.Text);
-            Worker.allWorkers.Remove(person);
-            WorkDay day = new WorkDay(TranslateType(comboBoxType.SelectedValue.ToString()), textBoxStart.Text, textBoxEnd.Text, textBoxNote.Text, comboBoxVacation.SelectedItem.ToString());
-            person.AddWorkDay(day);
-            Worker.allWorkers.Add(person);
-            mainPage.Reload();
-            LoadingDB.UpdateCounterDB();
-            LoadingDB.SerializeWorkers(Worker.allWorkers);
-            LoadingDB.SerializeWorkDays(WorkDay.allDays);
-            RestartForm();
+            ConfrontingDates.worker = person;
+            if (ConfrontingDates.CheckLeave(day2))
+            {
+                ConfrontingDates.workNew = day2;
+                Confrontation confrontation = new Confrontation(true, this);
+                confrontation.Show();
+                this.Enabled = false;
+            }
+            else
+            {
+                Save();
+            }
         }
 
         private void buttonSaveVacation_Click(object sender, EventArgs e)
@@ -138,7 +164,7 @@ namespace AccountingProject
         {
             if (this.Text != "")
             {
-                List<string> recommendedPeople = Searching.MakeRecommendation(this.Text);
+                List<string> recommendedPeople = Searching.MakeRecommendation(textBoxName.Text);
                 AddNamesToSearch(recommendedPeople);
                 listViewNames.Visible = true;
                 listViewNames.Enabled = true;
@@ -158,7 +184,7 @@ namespace AccountingProject
         {
             try
             {
-                Calendar.SelectionStart = DateTime.Parse(textBoxStart.Text);
+                Calendar.SelectionStart = DateTime.ParseExact(textBoxStart.Text, "d.M.yyy", culture);
             }catch(Exception ex)
             {
                 Console.WriteLine(ex);
@@ -169,7 +195,7 @@ namespace AccountingProject
         {
             try
             {
-                Calendar.SelectionEnd = DateTime.Parse(textBoxEnd.Text);
+                Calendar.SelectionEnd = DateTime.ParseExact(textBoxEnd.Text, "d.M.yyy", culture);
             }
             catch (Exception ex)
             {
@@ -230,7 +256,7 @@ namespace AccountingProject
 
         private void listViewNames_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBoxName.Text = listViewNames.SelectedItems[0].ToString();
+            textBoxName.Text = listViewNames.SelectedItems[0].Text;
             listViewNames.Visible = false;
             listViewNames.Enabled = false;
         }

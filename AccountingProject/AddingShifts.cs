@@ -25,6 +25,7 @@ namespace AccountingProject
 
         private void AddNamesToSearch(List<string> people)//save the names to a list
         {
+            listViewNames.Items.Clear();
             int i = 1;
             foreach (string person in people)
             {
@@ -39,6 +40,8 @@ namespace AccountingProject
             comboBoxType.SelectedIndex = 0;
             dateTimePicker1.Value = DateTime.Today;
             comboBoxWeekDay.SelectedIndex = (int)DateTime.Today.DayOfWeek - 1;
+            listViewNames.Visible = false;
+            listViewNames.Enabled = false;
         }
 
         private string TranslateType(string type)
@@ -58,30 +61,59 @@ namespace AccountingProject
             comboBoxWeekDay.SelectedIndex = (int)DateTime.Today.DayOfWeek - 1;
         }
 
+        public void Save()
+        {
+            this.Enabled = true;
+            if (ConfrontingDates.Complete && ConfrontingDates.Delete == false)
+            {
+                Worker person = Worker.allWorkers.Find(x => x.GetWholeName() == textBoxName.Text);
+                Worker.allWorkers.Remove(person);
+                ShiftDay day1 = new ShiftDay(TranslateType(comboBoxType.SelectedItem.ToString()), dateTimePicker1.Value.ToString("d.M.yyyy", culture), comboBoxWeekDay.SelectedIndex);
+                person.daysShift.Add(day1);
+                ShiftDay.allDays.Add(day1);
+                person.MakeSummary();
+                Worker.allWorkers.Add(person);
+                mainPage.Reload();
+                LoadingDB.UpdateCounterDB();
+                LoadingDB.SerializeWorkers(Worker.allWorkers);
+                LoadingDB.SerializeShiftDays(ShiftDay.allDays);
+            }
+            RestartForm();
+        }
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            ShiftDay day1 = new ShiftDay(TranslateType(comboBoxType.SelectedItem.ToString()), dateTimePicker1.Value.ToString("d.M.yyyy", culture), comboBoxWeekDay.SelectedIndex);
             Worker person = Worker.allWorkers.Find(x => x.GetWholeName() == textBoxName.Text);
-            Worker.allWorkers.Remove(person);
-            ShiftDay day = new ShiftDay(TranslateType(comboBoxType.SelectedItem.ToString()), dateTimePicker1.Text, comboBoxWeekDay.SelectedIndex);
-            person.AddShiftDay(day);
-            Worker.allWorkers.Add(person);
-            mainPage.Reload();
-            LoadingDB.UpdateCounterDB();
-            LoadingDB.SerializeWorkers(Worker.allWorkers);
-            LoadingDB.SerializeShiftDays(ShiftDay.allDays);
-            RestartForm();
+            ConfrontingDates.worker = person;
+            if (ConfrontingDates.CheckShift(day1))
+            {
+                ConfrontingDates.shiftNew = day1;
+                Confrontation confrontation = new Confrontation(false, this);
+                confrontation.Show();
+                this.Enabled = false;
+            }
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            comboBoxWeekDay.SelectedIndex = (int)dateTimePicker1.Value.DayOfWeek - 1;
+            if ((int)dateTimePicker1.Value.DayOfWeek != 0)
+            {
+                comboBoxWeekDay.SelectedIndex = (int)dateTimePicker1.Value.DayOfWeek - 1;
+            }
+            else
+            {
+                comboBoxWeekDay.SelectedIndex = 6;
+            }
+            listViewNames.Visible = false;
+            listViewNames.Enabled = false;
         }
 
         private void textBoxName_TextChanged(object sender, EventArgs e)
         {
-            if (this.Text != "")
+            if (textBoxName.Text != "")
             {
-                List<string> recommendedPeople = Searching.MakeRecommendation(this.Text);
+                List<string> recommendedPeople = Searching.MakeRecommendation(textBoxName.Text);
                 AddNamesToSearch(recommendedPeople);
                 listViewNames.Visible = true;
                 listViewNames.Enabled = true;
@@ -90,12 +122,24 @@ namespace AccountingProject
 
         private void listViewNames_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBoxName.Text = listViewNames.SelectedItems[0].ToString();
+            textBoxName.Text = listViewNames.SelectedItems[0].Text;
             listViewNames.Visible = false;
             listViewNames.Enabled = false;
         }
 
         private void comboBoxType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listViewNames.Visible = false;
+            listViewNames.Enabled = false;
+        }
+
+        private void AddingShifts_Click(object sender, EventArgs e)
+        {
+            listViewNames.Visible = false;
+            listViewNames.Enabled = false;
+        }
+
+        private void comboBoxWeekDay_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

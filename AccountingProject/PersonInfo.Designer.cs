@@ -31,7 +31,16 @@ namespace AccountingProject
         {
             this.label5 = new System.Windows.Forms.Label();
             this.listViewLeave = new System.Windows.Forms.ListView();
+            this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Тип = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Начало = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Край = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Период = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listViewShift = new System.Windows.Forms.ListView();
+            this.ID1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Тип2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Дата = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ДенОтСедмицата = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label6 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label10 = new System.Windows.Forms.Label();
@@ -55,6 +64,7 @@ namespace AccountingProject
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxWeekDay = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -73,25 +83,81 @@ namespace AccountingProject
             // 
             // listViewLeave
             // 
+            this.listViewLeave.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ID,
+            this.Тип,
+            this.Начало,
+            this.Край,
+            this.Период});
             this.listViewLeave.HideSelection = false;
             this.listViewLeave.Location = new System.Drawing.Point(12, 37);
             this.listViewLeave.Name = "listViewLeave";
             this.listViewLeave.Size = new System.Drawing.Size(564, 172);
             this.listViewLeave.TabIndex = 22;
             this.listViewLeave.UseCompatibleStateImageBehavior = false;
+            this.listViewLeave.View = System.Windows.Forms.View.Details;
             this.listViewLeave.SelectedIndexChanged += new System.EventHandler(this.listViewLeave_SelectedIndexChanged);
             this.listViewLeave.DoubleClick += new System.EventHandler(this.listViewLeave_DoubleClick);
             // 
+            // ID
+            // 
+            this.ID.Text = "ID";
+            // 
+            // Тип
+            // 
+            this.Тип.Text = "Тип";
+            this.Тип.Width = 120;
+            // 
+            // Начало
+            // 
+            this.Начало.Text = "Начало";
+            this.Начало.Width = 150;
+            // 
+            // Край
+            // 
+            this.Край.Text = "Край";
+            this.Край.Width = 150;
+            // 
+            // Период
+            // 
+            this.Период.Text = "Период";
+            this.Период.Width = 80;
+            // 
             // listViewShift
             // 
+            this.listViewShift.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ID1,
+            this.Тип2,
+            this.Дата,
+            this.ДенОтСедмицата});
             this.listViewShift.HideSelection = false;
             this.listViewShift.Location = new System.Drawing.Point(604, 37);
             this.listViewShift.Name = "listViewShift";
             this.listViewShift.Size = new System.Drawing.Size(564, 172);
             this.listViewShift.TabIndex = 24;
             this.listViewShift.UseCompatibleStateImageBehavior = false;
+            this.listViewShift.View = System.Windows.Forms.View.Details;
             this.listViewShift.SelectedIndexChanged += new System.EventHandler(this.listViewShift_SelectedIndexChanged);
             this.listViewShift.DoubleClick += new System.EventHandler(this.listViewShift_DoubleClick);
+            // 
+            // ID1
+            // 
+            this.ID1.Text = "ID";
+            // 
+            // Тип2
+            // 
+            this.Тип2.Text = "Тип";
+            this.Тип2.Width = 170;
+            // 
+            // Дата
+            // 
+            this.Дата.Text = "Дата";
+            this.Дата.Width = 150;
+            // 
+            // ДенОтСедмицата
+            // 
+            this.ДенОтСедмицата.Text = "Ден От Седмицата";
+            this.ДенОтСедмицата.Width = 180;
             // 
             // label6
             // 
@@ -111,6 +177,7 @@ namespace AccountingProject
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.labelName);
             this.splitContainer1.Panel1.Controls.Add(this.label10);
             this.splitContainer1.Panel1.Controls.Add(this.buttonCutLeave);
             this.splitContainer1.Panel1.Controls.Add(this.buttonSaveLeave);
@@ -216,7 +283,10 @@ namespace AccountingProject
             // 
             this.Calendar.FirstDayOfWeek = System.Windows.Forms.Day.Monday;
             this.Calendar.Location = new System.Drawing.Point(25, 423);
+            this.Calendar.MaxSelectionCount = 365;
             this.Calendar.Name = "Calendar";
+            this.Calendar.ShowToday = false;
+            this.Calendar.ShowTodayCircle = false;
             this.Calendar.TabIndex = 27;
             this.Calendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.Calendar_DateChanged);
             // 
@@ -371,6 +441,16 @@ namespace AccountingProject
             this.label2.TabIndex = 16;
             this.label2.Text = "Дата";
             // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.Location = new System.Drawing.Point(240, 12);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(52, 24);
+            this.labelName.TabIndex = 35;
+            this.labelName.Text = "Име:";
+            // 
             // PersonInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -422,5 +502,15 @@ namespace AccountingProject
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button buttonCutLeave;
         private System.Windows.Forms.Button buttonSaveLeave;
+        private System.Windows.Forms.ColumnHeader Тип;
+        private System.Windows.Forms.ColumnHeader Начало;
+        private System.Windows.Forms.ColumnHeader Край;
+        private System.Windows.Forms.ColumnHeader Период;
+        private System.Windows.Forms.ColumnHeader ID;
+        private System.Windows.Forms.ColumnHeader ID1;
+        private System.Windows.Forms.ColumnHeader Тип2;
+        private System.Windows.Forms.ColumnHeader Дата;
+        private System.Windows.Forms.ColumnHeader ДенОтСедмицата;
+        private System.Windows.Forms.Label labelName;
     }
 }

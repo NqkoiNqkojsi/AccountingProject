@@ -25,10 +25,11 @@ namespace AccountingProject
         public void Reload()
         {
             listViewSummary.Items.Clear();
+            Console.WriteLine("Reloading()\n");
             foreach (Worker per in Worker.allWorkers)
             {
                 ListViewItem item = new ListViewItem(per.Summary[0]);
-                for(int i = 1; i < 9; i++)
+                for(int i = 1; i < 10; i++)
                 {
                     item.SubItems.Add(per.Summary[i]);
                 }
@@ -38,6 +39,13 @@ namespace AccountingProject
 
         private void MainPage_Load(object sender, EventArgs e)
         {
+            // Select the item and subitems when selection is made.
+            listViewSummary.FullRowSelect = true;
+            // Display grid lines.
+            listViewSummary.GridLines = true;
+            // Sort the items in the list in ascending order.
+            listViewSummary.Sorting = SortOrder.Ascending;
+            listViewSummary.MultiSelect = false;
             Reload();
         }
 
@@ -73,6 +81,12 @@ namespace AccountingProject
         private void listViewSummary_MouseDoubleClick(object sender, MouseEventArgs e)
         {
 
+        }
+
+        private void listViewSummary_DoubleClick(object sender, EventArgs e)
+        {
+            PersonInfo personInfo = new PersonInfo(listViewSummary.SelectedItems[0].Text, this);
+            personInfo.Show();
         }
     }
 }

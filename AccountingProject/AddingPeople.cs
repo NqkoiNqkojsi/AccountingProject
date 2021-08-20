@@ -72,18 +72,19 @@ namespace AccountingProject
             return parts[1];
         }
 
-        private void SearchForWorker(string names)
+        private void SearchForWorker(ListViewItem person)
         {
-            worker = Worker.FindByID(GetId(names));
+            Console.WriteLine("\n ID=" + person.SubItems[1].Text + "\n");
+            worker = Worker.FindByID(person.SubItems[1].Text);
             if (isNew == true)
             {
-                worker = Worker.FindByID(GetId(names), newWorkers);
+                worker = Worker.FindByID(person.SubItems[1].Text, newWorkers);
             }
         }
 
         private void RedactComponents(bool f)
         {
-            if (f)
+            if (f)//make it to default if true
             {
                 textBoxFirstName.BackColor = Color.White;
                 textBoxSecondName.BackColor = Color.White;
@@ -96,7 +97,7 @@ namespace AccountingProject
                 textBoxPosition.Text = "";
                 isRedacting = false;
             }
-            else
+            else//make it to redact if false
             {
                 textBoxFirstName.BackColor = Color.LightSalmon;
                 textBoxSecondName.BackColor = Color.LightSalmon;
@@ -104,7 +105,7 @@ namespace AccountingProject
                 textBoxPosition.BackColor = Color.LightSalmon;
                 buttonAddPerson.BackColor = Color.LightYellow;
                 Console.WriteLine("Workerstring="+workerString);
-                SearchForWorker(workerString);
+                SearchForWorker(listViewPeople.SelectedItems[0]);
                 textBoxFirstName.Text = worker.firstName;
                 textBoxSecondName.Text = worker.secondName;
                 textBoxLastName.Text = worker.lastName;
@@ -174,7 +175,7 @@ namespace AccountingProject
 
         private void buttonCut_Click(object sender, EventArgs e)
         {
-            SearchForWorker(listViewPeople.SelectedItems[0].Text);
+            SearchForWorker(listViewPeople.SelectedItems[0]);
             oldWorkers.Add(worker);
             RedactComponents(true);
             listViewPeople.Items.Remove(listViewPeople.SelectedItems[0]);
@@ -193,9 +194,9 @@ namespace AccountingProject
                     Console.WriteLine("Remove Exception: "+ex);
                 }
             }
-            mainPage.Reload();
             LoadingDB.UpdateCounterDB();
             LoadingDB.SerializeWorkers(Worker.allWorkers);
+            mainPage.Reload();
             this.Close();
         }
 

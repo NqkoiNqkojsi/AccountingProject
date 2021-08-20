@@ -15,7 +15,7 @@ namespace AccountingProject.Models
         public string id;
         public string position { get; set; }
 
-        public string[] Summary = new string[9];//Summary of all the days as string for the main page; updated in Days pages
+        public string[] Summary = new string[11];//Summary of all the days as string for the main page; updated in Days pages
 
         public static List<Person> allPeople = new List<Person>();
 
@@ -38,6 +38,7 @@ namespace AccountingProject.Models
             SaveName();
             id = Counter.counterWorker.ToString();
             Counter.Increase(1);
+            MakeSummary();
         }
 
         public void AddWorkDay(WorkDay day)
@@ -115,22 +116,22 @@ namespace AccountingProject.Models
             {
                 switch (vac.type)
                 {
-                    case "vacation":br[0]++;break;
-                    case "ill": br[1]++; break;
-                    case "seminar": br[2]++; break;
+                    case "vacation":br[0]+=vac.period;break;
+                    case "ill": br[1]+= vac.period; break;
+                    case "seminar": br[2]+= vac.period; break;
                 }
-                br[3]++;
+                br[3]+=vac.period;
             }
-            Summary[1] = br[0].ToString();
-            Summary[2] = br[1].ToString();
-            Summary[3] = br[2].ToString();
-            Summary[4] = br[3].ToString();
+            Summary[2] = br[0].ToString();
+            Summary[3] = br[1].ToString();
+            Summary[4] = br[2].ToString();
+            Summary[5] = br[3].ToString();
 
         }
         public void CountDaysShift()
         {
             int[] br = new int[4];
-            foreach (WorkDay vac in daysLeaves)
+            foreach (ShiftDay vac in daysShift)
             {
                 switch (vac.type)
                 {
@@ -140,34 +141,16 @@ namespace AccountingProject.Models
                 }
                 br[3]++;
             }
-            Summary[5] = br[0].ToString();
-            Summary[6] = br[1].ToString();
-            Summary[7] = br[2].ToString();
-            Summary[8] = br[3].ToString();
+            Summary[6] = br[0].ToString();
+            Summary[7] = br[1].ToString();
+            Summary[8] = br[2].ToString();
+            Summary[9] = br[3].ToString();
         }
 
         public void  MakeSummary()
         {
-            /*
-            Sum.Append("Name".PadRight(55));
-            Sum.Append("| ");
-            Sum.Append("Отпуска");
-            Sum.Append(" | ");
-            Sum.Append("Болничен");
-            Sum.Append(" | ");
-            Sum.Append("Семинари");
-            Sum.Append(" | ");
-            Sum.Append("Общо");
-            Sum.Append(" | ");
-            Sum.Append("Работни");
-            Sum.Append(" | ");
-            Sum.Append("Почивни");
-            Sum.Append(" | ");
-            Sum.Append("Празнични");
-            Sum.Append(" | ");
-            Sum.Append("Общо");
-            */
-            Summary[0] = wholeName;
+            Summary[0] = id;
+            Summary[1] = wholeName;
             CountDaysLeave();
             CountDaysShift();
         }

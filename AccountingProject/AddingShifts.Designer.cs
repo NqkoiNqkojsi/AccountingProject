@@ -110,6 +110,7 @@ namespace AccountingProject
             this.comboBoxWeekDay.Name = "comboBoxWeekDay";
             this.comboBoxWeekDay.Size = new System.Drawing.Size(219, 26);
             this.comboBoxWeekDay.TabIndex = 12;
+            this.comboBoxWeekDay.SelectedIndexChanged += new System.EventHandler(this.comboBoxWeekDay_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -176,6 +177,7 @@ namespace AccountingProject
             this.Name = "AddingShifts";
             this.Text = "AddingShifts";
             this.Load += new System.EventHandler(this.AddingShifts_Load);
+            this.Click += new System.EventHandler(this.AddingShifts_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 

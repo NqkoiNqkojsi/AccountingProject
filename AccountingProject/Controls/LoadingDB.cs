@@ -52,7 +52,7 @@ namespace AccountingProject.Controls
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Console.WriteLine("Exception Counter= " + ex + '\n');
                 Counter.counterWorker = 0;
                 Counter.counterWorkDays = 0;
                 Counter.counterShiftDays = 0;
@@ -100,6 +100,7 @@ namespace AccountingProject.Controls
             {
                 try
                 {
+                    Console.WriteLine("Deserilze WorkDays \n");
                     return JsonConvert.DeserializeObject<List<WorkDay>>(text);
                 }
                 catch (Exception ex)
