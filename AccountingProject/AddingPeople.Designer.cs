@@ -33,6 +33,9 @@ namespace AccountingProject
             this.textBoxSecondName = new System.Windows.Forms.TextBox();
             this.buttonAddPerson = new System.Windows.Forms.Button();
             this.listViewPeople = new System.Windows.Forms.ListView();
+            this.Име = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.еНов = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonRedact = new System.Windows.Forms.Button();
             this.buttonCut = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
@@ -42,9 +45,9 @@ namespace AccountingProject
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.Име = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.еНов = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label5 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxFirstName
@@ -93,6 +96,20 @@ namespace AccountingProject
             this.listViewPeople.UseCompatibleStateImageBehavior = false;
             this.listViewPeople.View = System.Windows.Forms.View.Details;
             this.listViewPeople.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // Име
+            // 
+            this.Име.Text = "Име";
+            this.Име.Width = 300;
+            // 
+            // ID
+            // 
+            this.ID.Text = "Id";
+            // 
+            // еНов
+            // 
+            this.еНов.Text = "еНов";
+            this.еНов.Width = 100;
             // 
             // buttonRedact
             // 
@@ -189,25 +206,31 @@ namespace AccountingProject
             this.label4.TabIndex = 12;
             this.label4.Text = "Фамилно Име";
             // 
-            // Име
+            // label5
             // 
-            this.Име.Text = "Име";
-            this.Име.Width = 300;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(432, 88);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(84, 24);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Отпуска";
             // 
-            // ID
+            // numericUpDown1
             // 
-            this.ID.Text = "Id";
-            // 
-            // еНов
-            // 
-            this.еНов.Text = "еНов";
-            this.еНов.Width = 100;
+            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown1.Location = new System.Drawing.Point(436, 115);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 29);
+            this.numericUpDown1.TabIndex = 15;
             // 
             // AddingPeople
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(908, 451);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -224,6 +247,7 @@ namespace AccountingProject
             this.Name = "AddingPeople";
             this.Text = "AddingPeople";
             this.Load += new System.EventHandler(this.AddingPeople_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,5 +271,7 @@ namespace AccountingProject
         private System.Windows.Forms.ColumnHeader Име;
         private System.Windows.Forms.ColumnHeader ID;
         private System.Windows.Forms.ColumnHeader еНов;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }

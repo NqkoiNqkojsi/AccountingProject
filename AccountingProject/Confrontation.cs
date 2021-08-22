@@ -103,7 +103,7 @@ namespace AccountingProject
                 {
                     ConfrontingDates.Complete = true;
                     ConfrontingDates.Delete = false;
-                    addingDays.Save();
+                    addingDays.Save(true);
                     this.Close();
                 }
             }
@@ -117,7 +117,7 @@ namespace AccountingProject
                 {
                     ConfrontingDates.Complete = true;
                     ConfrontingDates.Delete = false;
-                    addingShifts.Save();
+                    addingShifts.Save(true);
                     this.Close();
                 }
             }
@@ -218,9 +218,11 @@ namespace AccountingProject
                 worker.daysLeaves.Remove(workDay);
                 workDay.start = textBoxStart.Text;
                 workDay.end = textBoxEnd.Text;
+                workDay.Period();
                 workDay.MakeSummary();
                 WorkDay.allDays.Add(workDay);
                 worker.daysLeaves.Add(workDay);
+                worker.MakeSummary();
             }
             else
             {
@@ -231,6 +233,7 @@ namespace AccountingProject
                 shiftDay.MakeSummary();
                 ShiftDay.allDays.Add(shiftDay);
                 worker.daysShift.Add(shiftDay);
+                worker.MakeSummary();
             }
             CheckIsReady();
         }
@@ -247,11 +250,11 @@ namespace AccountingProject
             ConfrontingDates.Complete = true;
             if (isLeaveNew)
             {
-                addingDays.Save();
+                addingDays.Save(true);
             }
             else
             {
-                addingShifts.Save();
+                addingShifts.Save(true);
             }
             this.Close();
         }

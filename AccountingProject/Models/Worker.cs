@@ -15,6 +15,8 @@ namespace AccountingProject.Models
         public string id;
         public string position { get; set; }
 
+        public int leftDays { get; set; }
+
         public string[] Summary = new string[11];//Summary of all the days as string for the main page; updated in Days pages
 
         public static List<Person> allPeople = new List<Person>();

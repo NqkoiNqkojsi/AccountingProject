@@ -61,10 +61,10 @@ namespace AccountingProject
             comboBoxWeekDay.SelectedIndex = (int)DateTime.Today.DayOfWeek - 1;
         }
 
-        public void Save()
+        public void Save(bool isComf)
         {
             this.Enabled = true;
-            if (ConfrontingDates.Complete && ConfrontingDates.Delete == false)
+            if (isComf==false && ConfrontingDates.Delete == false)
             {
                 Worker person = Worker.allWorkers.Find(x => x.GetWholeName() == textBoxName.Text);
                 Worker.allWorkers.Remove(person);
@@ -92,6 +92,10 @@ namespace AccountingProject
                 Confrontation confrontation = new Confrontation(false, this);
                 confrontation.Show();
                 this.Enabled = false;
+            }
+            else
+            {
+                Save(false);
             }
         }
 

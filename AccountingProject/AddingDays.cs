@@ -90,10 +90,10 @@ namespace AccountingProject
             }
         }
 
-        public void Save()
+        public void Save(bool isComf)
         {
             this.Enabled = true;
-            if (ConfrontingDates.Complete == true && ConfrontingDates.Delete == false)
+            if (isComf==false || ConfrontingDates.Delete == false)
             {
                 WorkDay day2 = new WorkDay(TranslateType(comboBoxType.SelectedItem.ToString()), textBoxStart.Text, textBoxEnd.Text, textBoxNote.Text, comboBoxVacation.SelectedItem.ToString());
                 Worker person = Worker.allWorkers.Find(x => x.GetWholeName() == textBoxName.Text);
@@ -125,7 +125,7 @@ namespace AccountingProject
             }
             else
             {
-                Save();
+                Save(false);
             }
         }
 
