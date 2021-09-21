@@ -31,6 +31,7 @@ namespace AccountingProject
         {
             this.components = new System.ComponentModel.Container();
             this.panelSideBar = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.buttonAddingPeople = new System.Windows.Forms.Button();
             this.buttonAddingShifts = new System.Windows.Forms.Button();
             this.buttonAddingLeave = new System.Windows.Forms.Button();
@@ -57,6 +58,7 @@ namespace AccountingProject
             // 
             this.panelSideBar.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.panelSideBar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelSideBar.Controls.Add(this.button1);
             this.panelSideBar.Controls.Add(this.buttonAddingPeople);
             this.panelSideBar.Controls.Add(this.buttonAddingShifts);
             this.panelSideBar.Controls.Add(this.buttonAddingLeave);
@@ -65,6 +67,19 @@ namespace AccountingProject
             this.panelSideBar.Name = "panelSideBar";
             this.panelSideBar.Size = new System.Drawing.Size(213, 510);
             this.panelSideBar.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.GrayText;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.Control;
+            this.button1.Location = new System.Drawing.Point(12, 11);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(185, 60);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Settings";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonAddingPeople
             // 
@@ -106,7 +121,7 @@ namespace AccountingProject
             // 
             this.buttonOpenMontlyReporter.BackColor = System.Drawing.Color.AntiqueWhite;
             this.buttonOpenMontlyReporter.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonOpenMontlyReporter.Location = new System.Drawing.Point(12, 26);
+            this.buttonOpenMontlyReporter.Location = new System.Drawing.Point(12, 95);
             this.buttonOpenMontlyReporter.Name = "buttonOpenMontlyReporter";
             this.buttonOpenMontlyReporter.Size = new System.Drawing.Size(185, 60);
             this.buttonOpenMontlyReporter.TabIndex = 0;
@@ -236,6 +251,7 @@ namespace AccountingProject
         private System.Windows.Forms.ColumnHeader Празнични;
         private System.Windows.Forms.ColumnHeader Общо2;
         private System.Windows.Forms.ColumnHeader ID;
+        private System.Windows.Forms.Button button1;
     }
 }
 

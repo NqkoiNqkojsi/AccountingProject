@@ -64,17 +64,19 @@ namespace AccountingProject.Controls
                 int addWeekends = 0;
                 for(int i = 0; i < day.period+addWeekends; i++)
                 {
-                    if ((int)startTime.DayOfWeek == 6 || (int)startTime.DayOfWeek == 0)
+                    if ((int)startTime.DayOfWeek != 6 && (int)startTime.DayOfWeek != 0)
+                    {
+                        dayly[startTime.Month, startTime.Day] = GetSymbol(day.type);
+                        sum[startTime.Month, GetIndex(day.type)]++;
+                        sum[startTime.Month, 3]++;
+                        Console.WriteLine("DayOfWeek=" + startTime.DayOfWeek);
+                    }
+                    else
                     {
                         addWeekends++;
-                        Console.WriteLine("index= " + (int)startTime.DayOfWeek + " day=" + startTime.DayOfWeek + "\n");
                     }
-                    
-                    dayly[startTime.Month, startTime.Day] = GetSymbol(day.type);
                     startTime = startTime.AddDays(1);
                 }
-                sum[startTime.Month, GetIndex(day.type)]+=day.period;
-                sum[startTime.Month, 3]+=day.period;
             }
             foreach (ShiftDay day in person.daysShift)
             {

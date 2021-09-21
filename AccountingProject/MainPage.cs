@@ -88,5 +88,11 @@ namespace AccountingProject
             PersonInfo personInfo = new PersonInfo(listViewSummary.SelectedItems[0].Text, this);
             personInfo.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.Show();
+        }
     }
 }

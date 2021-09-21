@@ -105,7 +105,7 @@ namespace AccountingProject.Controls
             {
                 count = endNew - startOld;
             }
-            return count;
+            return count+1;
         }
     }
 }

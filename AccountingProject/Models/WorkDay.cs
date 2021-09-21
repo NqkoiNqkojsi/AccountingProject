@@ -22,6 +22,8 @@ namespace AccountingProject.Models
 
         public static List<WorkDay> allDays = new List<WorkDay>();
 
+        public static int Year;
+
         public WorkDay(string type, string start, string end, string note="", string vacationType="")
         {
             this.type = type;

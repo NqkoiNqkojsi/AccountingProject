@@ -35,7 +35,7 @@ namespace AccountingProject
                 int m = DateTime.Today.Year, n;
                 n = DateTime.DaysInMonth(m, monthIndex);
                 string startMonth = "1." + monthIndex + "." + m;
-                for (int i = 1; i < n; i++)
+                for (int i = 1; i <= n; i++)
                 {
                     listView.Columns.Add(i.ToString(), 30);
                 }
@@ -44,7 +44,7 @@ namespace AccountingProject
                     ListViewItem item = new ListViewItem(target.id);
                     item.SubItems.Add(target.name);
                     DateTime dateTime = DateTime.ParseExact(startMonth, "d.M.yyyy", culture);
-                    for (int i = 1; i < n; i++)
+                    for (int i = 1; i <= n; i++)
                     {
                         if ((int)dateTime.DayOfWeek == 0 || (int)dateTime.DayOfWeek == 6)
                         {

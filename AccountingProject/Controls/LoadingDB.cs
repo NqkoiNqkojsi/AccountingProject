@@ -28,7 +28,7 @@ namespace AccountingProject.Controls
 
         static public bool IsDBEmpty()
         {
-            string text = System.IO.File.ReadAllText(@"..\..\Database\workers.json");
+            string text = System.IO.File.ReadAllText(@"..\..\Database\workers" + WorkDay.Year + ".json");
             Console.WriteLine($"text={text}");
             if (text.Length<5)
             {
@@ -41,7 +41,7 @@ namespace AccountingProject.Controls
         }
         static public void MakeDBReady()
         {
-            string text = System.IO.File.ReadAllText(@"..\..\Database\counter.json");
+            string text = System.IO.File.ReadAllText(@"..\..\Database\counter" + WorkDay.Year + ".json");
             try
             {
                 Counter obj =JsonConvert.DeserializeObject<Counter>(text);
@@ -66,7 +66,7 @@ namespace AccountingProject.Controls
 
         static public List<Person> DeserializePeople()
         {
-            string text = System.IO.File.ReadAllText(@"..\..\Database\people.json");
+            string text = System.IO.File.ReadAllText(@"..\..\Database\people"+WorkDay.Year+".json");
             try
             {
                 return JsonConvert.DeserializeObject<List<Person>>(text);
@@ -78,7 +78,7 @@ namespace AccountingProject.Controls
         }
         static public List<Worker> DeserializeWorkers()
         {
-            string text = System.IO.File.ReadAllText(@"..\..\Database\workers.json");
+            string text = System.IO.File.ReadAllText(@"..\..\Database\workers" + WorkDay.Year + ".json");
             if (text.Length > 2)
             {
                 try
@@ -95,7 +95,7 @@ namespace AccountingProject.Controls
         }
         static public List<WorkDay> DeserializeWorkDays()
         {
-            string text = System.IO.File.ReadAllText(@"..\..\Database\workdays.json");
+            string text = System.IO.File.ReadAllText(@"..\..\Database\workdays" + WorkDay.Year + ".json");
             if (text.Length > 2)
             {
                 try
@@ -113,7 +113,7 @@ namespace AccountingProject.Controls
         }
         static public List<ShiftDay> DeserializeShiftDays()
         {
-            string text = System.IO.File.ReadAllText(@"..\..\Database\shiftdays.json");
+            string text = System.IO.File.ReadAllText(@"..\..\Database\shiftdays" + WorkDay.Year + ".json");
             if (text.Length > 2)
             {
                 try
@@ -130,19 +130,19 @@ namespace AccountingProject.Controls
         }
         static public void SerializePeople(List<Person> workers)
         {
-            System.IO.File.WriteAllText(@"..\..\Database\people.json", JsonConvert.SerializeObject(workers));
+            System.IO.File.WriteAllText(@"..\..\Database\people" + WorkDay.Year + ".json", JsonConvert.SerializeObject(workers));
         }
         static public void SerializeWorkers(List<Worker> workers)
         {
-            System.IO.File.WriteAllText(@"..\..\Database\workers.json", JsonConvert.SerializeObject(workers));
+            System.IO.File.WriteAllText(@"..\..\Database\workers" + WorkDay.Year + ".json", JsonConvert.SerializeObject(workers));
         }
         static public void SerializeWorkDays(List<WorkDay> workers)
         {
-            System.IO.File.WriteAllText(@"..\..\Database\workdays.json", JsonConvert.SerializeObject(workers));
+            System.IO.File.WriteAllText(@"..\..\Database\workdays" + WorkDay.Year + ".json", JsonConvert.SerializeObject(workers));
         }
         static public void SerializeShiftDays(List<ShiftDay> workers)
         {
-            System.IO.File.WriteAllText(@"..\..\Database\shiftdays.json", JsonConvert.SerializeObject(workers));
+            System.IO.File.WriteAllText(@"..\..\Database\shiftdays" + WorkDay.Year + ".json", JsonConvert.SerializeObject(workers));
         }
     }
 }

@@ -18,6 +18,7 @@ namespace AccountingProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            WorkDay.Year = DateTime.Now.Year;
             if (LoadingDB.IsDBEmpty())
             {
                 Application.Run(new MainPage(true));
