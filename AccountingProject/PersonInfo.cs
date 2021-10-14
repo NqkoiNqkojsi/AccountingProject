@@ -16,12 +16,14 @@ namespace AccountingProject
     public partial class PersonInfo : Form
     {
         CultureInfo culture = CultureInfo.CreateSpecificCulture("de-DE");
-        Worker worker = new Worker("","","","");
+        Worker worker = new Worker("","","","", 0);
         WorkDay workDay = new WorkDay("", "", "");
         WorkDay workDayOld = new WorkDay("", "", "");
         ShiftDay shiftDay = new ShiftDay("", "", 0);
         ShiftDay shiftDayOld = new ShiftDay("", "", 0);
         private MainPage mainPage;
+        private int permLeaveDay = 0;
+        private int leaveDay = 0;
 
         private string TranslateTypeLeave(string type)
         {
@@ -56,6 +58,8 @@ namespace AccountingProject
             dateTimePicker1.Value = DateTime.Today;
             listViewLeave.Items.Clear();
             listViewShift.Items.Clear();
+            permLeaveDay = worker.leftDaysPerm;
+            textBoxDaysPerm.Text =permLeaveDay.ToString();
             foreach (WorkDay row in worker.daysLeaves)
             {
                 ListViewItem item = new ListViewItem(row.Summary[0]);
@@ -64,6 +68,10 @@ namespace AccountingProject
                     item.SubItems.Add(row.Summary[i]);
                 }
                 listViewLeave.Items.Add(item);
+                if (row.IndexType() == 0)
+                {
+                    leaveDay += row.period;
+                }
             }
             foreach (ShiftDay row in worker.daysShift)
             {
@@ -74,6 +82,8 @@ namespace AccountingProject
                 }
                 listViewShift.Items.Add(item);
             }
+            textBoxDaysNeed.Text = leaveDay.ToString();
+            textBoxDaysLeft.Text = (permLeaveDay - leaveDay).ToString();
         }
 
         public PersonInfo(string id, MainPage mainPage)
@@ -82,10 +92,14 @@ namespace AccountingProject
             worker = Worker.allWorkers.Find(x => x.id == id);
             labelName.Text = "Име: " + worker.wholeName;
             this.mainPage = mainPage;
+            permLeaveDay = worker.leftDaysPerm;
         }
 
         private void PersonInfo_Load(object sender, EventArgs e)
         {
+            textBoxDaysLeft.Enabled = false;
+            textBoxDaysNeed.Enabled = false;
+            textBoxDaysPerm.Enabled = false;
             listViewLeave.FullRowSelect = true;
             listViewLeave.GridLines = true;
             listViewLeave.Sorting = SortOrder.Ascending;

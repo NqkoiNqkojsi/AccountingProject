@@ -29,6 +29,7 @@ namespace AccountingProject
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.labelFirstName = new System.Windows.Forms.Label();
             this.comboBoxType = new System.Windows.Forms.ComboBox();
@@ -50,8 +51,10 @@ namespace AccountingProject
             this.label3 = new System.Windows.Forms.Label();
             this.Calendar = new System.Windows.Forms.MonthCalendar();
             this.listViewNames = new System.Windows.Forms.ListView();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panelVacationType.SuspendLayout();
             this.panelCalendar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxName
@@ -304,6 +307,10 @@ namespace AccountingProject
             this.listViewNames.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewNames_ItemSelectionChanged);
             this.listViewNames.SelectedIndexChanged += new System.EventHandler(this.listViewNames_SelectedIndexChanged);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // AddingDays
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -326,6 +333,7 @@ namespace AccountingProject
             this.panelVacationType.ResumeLayout(false);
             this.panelCalendar.ResumeLayout(false);
             this.panelCalendar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -354,5 +362,6 @@ namespace AccountingProject
         private System.Windows.Forms.Button buttonCloseCalendar;
         private System.Windows.Forms.Button buttonSaveCalendar;
         private System.Windows.Forms.ListView listViewNames;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

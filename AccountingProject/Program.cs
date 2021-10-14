@@ -18,7 +18,7 @@ namespace AccountingProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            WorkDay.Year = DateTime.Now.Year;
+            SettingModel.year = DateTime.Now.Year;
             if (LoadingDB.IsDBEmpty())
             {
                 Application.Run(new MainPage(true));
@@ -26,14 +26,7 @@ namespace AccountingProject
             else
             {
                 //LoadingDB.MakeDBReady();
-                Person.allPeople = LoadingDB.DeserializePeople();
-                Worker.allWorkers = LoadingDB.DeserializeWorkers();
-                WorkDay.allDays = LoadingDB.DeserializeWorkDays();
-                ShiftDay.allDays = LoadingDB.DeserializeShiftDays();
-                foreach (Worker worker in Worker.allWorkers)
-                {
-                    worker.MakeSummary();
-                }
+                ChangeYear.MakeNewDB();
                 Application.Run(new MainPage(false));
             }
         }

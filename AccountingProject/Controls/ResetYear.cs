@@ -9,7 +9,7 @@ namespace AccountingProject.Controls
 {
     class ResetYear
     {
-        public void Reset(int year)
+        public void Reset(int year)//Reset year in database
         {
             Worker.allWorkers.Clear();
             ShiftDay.allDays.Clear();

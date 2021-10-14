@@ -43,6 +43,7 @@ namespace AccountingProject
             this.ДенОтСедмицата = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label6 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.labelName = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.buttonCutLeave = new System.Windows.Forms.Button();
             this.buttonSaveLeave = new System.Windows.Forms.Button();
@@ -64,11 +65,18 @@ namespace AccountingProject
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxWeekDay = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.labelName = new System.Windows.Forms.Label();
+            this.panelLeftDaysCount = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBoxDaysLeft = new System.Windows.Forms.TextBox();
+            this.textBoxDaysNeed = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBoxDaysPerm = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panelLeftDaysCount.SuspendLayout();
             this.SuspendLayout();
             // 
             // label5
@@ -195,6 +203,7 @@ namespace AccountingProject
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.splitContainer1.Panel2.Controls.Add(this.panelLeftDaysCount);
             this.splitContainer1.Panel2.Controls.Add(this.buttonCutShift);
             this.splitContainer1.Panel2.Controls.Add(this.buttonSaveShift);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
@@ -206,6 +215,16 @@ namespace AccountingProject
             this.splitContainer1.Size = new System.Drawing.Size(1190, 594);
             this.splitContainer1.SplitterDistance = 594;
             this.splitContainer1.TabIndex = 25;
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.Location = new System.Drawing.Point(240, 12);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(52, 24);
+            this.labelName.TabIndex = 35;
+            this.labelName.Text = "Име:";
             // 
             // label10
             // 
@@ -441,15 +460,73 @@ namespace AccountingProject
             this.label2.TabIndex = 16;
             this.label2.Text = "Дата";
             // 
-            // labelName
+            // panelLeftDaysCount
             // 
-            this.labelName.AutoSize = true;
-            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelName.Location = new System.Drawing.Point(240, 12);
-            this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(52, 24);
-            this.labelName.TabIndex = 35;
-            this.labelName.Text = "Име:";
+            this.panelLeftDaysCount.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panelLeftDaysCount.Controls.Add(this.textBoxDaysPerm);
+            this.panelLeftDaysCount.Controls.Add(this.label13);
+            this.panelLeftDaysCount.Controls.Add(this.textBoxDaysNeed);
+            this.panelLeftDaysCount.Controls.Add(this.label12);
+            this.panelLeftDaysCount.Controls.Add(this.textBoxDaysLeft);
+            this.panelLeftDaysCount.Controls.Add(this.label11);
+            this.panelLeftDaysCount.Location = new System.Drawing.Point(-11, 456);
+            this.panelLeftDaysCount.Name = "panelLeftDaysCount";
+            this.panelLeftDaysCount.Size = new System.Drawing.Size(600, 150);
+            this.panelLeftDaysCount.TabIndex = 24;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(43, 43);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(147, 20);
+            this.label11.TabIndex = 30;
+            this.label11.Text = "Останала отпуска";
+            // 
+            // textBoxDaysLeft
+            // 
+            this.textBoxDaysLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxDaysLeft.Location = new System.Drawing.Point(47, 75);
+            this.textBoxDaysLeft.Name = "textBoxDaysLeft";
+            this.textBoxDaysLeft.Size = new System.Drawing.Size(143, 24);
+            this.textBoxDaysLeft.TabIndex = 31;
+            // 
+            // textBoxDaysNeed
+            // 
+            this.textBoxDaysNeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxDaysNeed.Location = new System.Drawing.Point(244, 75);
+            this.textBoxDaysNeed.Name = "textBoxDaysNeed";
+            this.textBoxDaysNeed.Size = new System.Drawing.Size(143, 24);
+            this.textBoxDaysNeed.TabIndex = 33;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(240, 43);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(119, 20);
+            this.label12.TabIndex = 32;
+            this.label12.Text = "Заета отпуска";
+            // 
+            // textBoxDaysPerm
+            // 
+            this.textBoxDaysPerm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxDaysPerm.Location = new System.Drawing.Point(437, 75);
+            this.textBoxDaysPerm.Name = "textBoxDaysPerm";
+            this.textBoxDaysPerm.Size = new System.Drawing.Size(143, 24);
+            this.textBoxDaysPerm.TabIndex = 35;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(433, 43);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(112, 20);
+            this.label13.TabIndex = 34;
+            this.label13.Text = "Цяла отпуска";
             // 
             // PersonInfo
             // 
@@ -470,6 +547,8 @@ namespace AccountingProject
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.panelLeftDaysCount.ResumeLayout(false);
+            this.panelLeftDaysCount.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -512,5 +591,12 @@ namespace AccountingProject
         private System.Windows.Forms.ColumnHeader Дата;
         private System.Windows.Forms.ColumnHeader ДенОтСедмицата;
         private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.Panel panelLeftDaysCount;
+        private System.Windows.Forms.TextBox textBoxDaysPerm;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBoxDaysNeed;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textBoxDaysLeft;
+        private System.Windows.Forms.Label label11;
     }
 }

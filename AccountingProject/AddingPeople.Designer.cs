@@ -46,8 +46,8 @@ namespace AccountingProject
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.leaveNumber = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.leaveNumber)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxFirstName
@@ -216,20 +216,20 @@ namespace AccountingProject
             this.label5.TabIndex = 14;
             this.label5.Text = "Отпуска";
             // 
-            // numericUpDown1
+            // leaveNumber
             // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(436, 115);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 29);
-            this.numericUpDown1.TabIndex = 15;
+            this.leaveNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leaveNumber.Location = new System.Drawing.Point(436, 115);
+            this.leaveNumber.Name = "leaveNumber";
+            this.leaveNumber.Size = new System.Drawing.Size(120, 29);
+            this.leaveNumber.TabIndex = 15;
             // 
             // AddingPeople
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(908, 451);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.leaveNumber);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -247,7 +247,7 @@ namespace AccountingProject
             this.Name = "AddingPeople";
             this.Text = "AddingPeople";
             this.Load += new System.EventHandler(this.AddingPeople_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leaveNumber)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,6 +272,6 @@ namespace AccountingProject
         private System.Windows.Forms.ColumnHeader ID;
         private System.Windows.Forms.ColumnHeader еНов;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown leaveNumber;
     }
 }

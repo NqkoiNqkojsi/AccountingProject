@@ -16,6 +16,7 @@ namespace AccountingProject.Models
         public string position { get; set; }
 
         public int leftDays { get; set; }
+        public int leftDaysPerm { get; set; }
 
         public string[] Summary = new string[11];//Summary of all the days as string for the main page; updated in Days pages
 
@@ -31,12 +32,14 @@ namespace AccountingProject.Models
             wholeName = firstName + " " + secondName + " " + lastName;
         }
 
-        public Worker( string firstName, string secondName, string lastName, string position)
+        public Worker( string firstName, string secondName, string lastName, string position, int leftDays)
         {
             this.firstName = firstName;
             this.lastName = lastName;
             this.secondName = secondName;
             this.position = position;
+            this.leftDays = 0;
+            leftDaysPerm = leftDays;
             SaveName();
             id = Counter.counterWorker.ToString();
             Counter.Increase(1);
@@ -82,6 +85,16 @@ namespace AccountingProject.Models
             }
             
             SaveName();
+        }
+
+        public bool ChangeLeftDaysPerm(int daysCount)
+        {
+            if (leftDays >= daysCount)
+            {
+                return false;
+            }
+            leftDaysPerm = daysCount;
+            return true;
         }
 
         public string GetWholeName()

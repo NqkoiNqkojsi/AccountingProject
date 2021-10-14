@@ -99,7 +99,20 @@ namespace AccountingProject
                 Worker person = Worker.allWorkers.Find(x => x.GetWholeName() == textBoxName.Text);
                 Worker.allWorkers.Remove(person);
                 person.daysLeaves.Add(day2);
-                WorkDay.allDays.Add(day2);
+                if (comboBoxVacation.SelectedIndex == 0)
+                {
+                    person.leftDays += day2.period;
+                }
+                if (WorkDay.allDays != null)
+                {
+                    WorkDay.allDays.Add(day2);
+                }
+                else
+                {
+                    List<WorkDay> placeholder = new List<WorkDay>();
+                    placeholder.Add(day2);
+                    WorkDay.allDays=placeholder;
+                }
                 Worker.allWorkers.Add(person);
                 person.MakeSummary();
                 mainPage.Reload();
@@ -115,6 +128,10 @@ namespace AccountingProject
             CloseModals();
             WorkDay day2 = new WorkDay(TranslateType(comboBoxType.SelectedItem.ToString()), textBoxStart.Text, textBoxEnd.Text, textBoxNote.Text, comboBoxVacation.SelectedItem.ToString());
             Worker person = Worker.allWorkers.Find(x => x.GetWholeName() == textBoxName.Text);
+            if (day2.period > (person.leftDaysPerm-person.leftDays))
+            {
+                errorProvider1.SetError(this.buttonSaveWorker, "Too much vacations");//Fix this
+            }
             ConfrontingDates.worker = person;
             if (ConfrontingDates.CheckLeave(day2))
             {

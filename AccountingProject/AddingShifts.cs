@@ -70,7 +70,16 @@ namespace AccountingProject
                 Worker.allWorkers.Remove(person);
                 ShiftDay day1 = new ShiftDay(TranslateType(comboBoxType.SelectedItem.ToString()), dateTimePicker1.Value.ToString("d.M.yyyy", culture), comboBoxWeekDay.SelectedIndex);
                 person.daysShift.Add(day1);
-                ShiftDay.allDays.Add(day1);
+                if (ShiftDay.allDays != null)
+                {
+                    ShiftDay.allDays.Add(day1);
+                }
+                else
+                {
+                    List<ShiftDay> placeholder = new List<ShiftDay>();
+                    placeholder.Add(day1);
+                    ShiftDay.allDays = placeholder;
+                }
                 person.MakeSummary();
                 Worker.allWorkers.Add(person);
                 mainPage.Reload();

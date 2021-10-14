@@ -26,14 +26,17 @@ namespace AccountingProject
         {
             listViewSummary.Items.Clear();
             Console.WriteLine("Reloading()\n");
-            foreach (Worker per in Worker.allWorkers)
+            if (Worker.allWorkers != null)
             {
-                ListViewItem item = new ListViewItem(per.Summary[0]);
-                for(int i = 1; i < 10; i++)
+                foreach (Worker per in Worker.allWorkers)
                 {
-                    item.SubItems.Add(per.Summary[i]);
+                    ListViewItem item = new ListViewItem(per.Summary[0]);
+                    for (int i = 1; i < 10; i++)
+                    {
+                        item.SubItems.Add(per.Summary[i]);
+                    }
+                    listViewSummary.Items.Add(item);
                 }
-                listViewSummary.Items.Add(item);
             }
         }
 
@@ -91,7 +94,7 @@ namespace AccountingProject
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Settings settings = new Settings();
+            Settings settings = new Settings(this);
             settings.Show();
         }
     }

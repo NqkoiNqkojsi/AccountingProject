@@ -25,7 +25,7 @@ namespace AccountingProject
         string workerString = "";
         List<Worker> newWorkers = new List<Worker>();
         List<Worker> oldWorkers = new List<Worker>();
-        Worker worker=new Worker("", "", "", "");
+        Worker worker=new Worker("", "", "", "", 0);
 
         private void AddingPeople_Load(object sender, EventArgs e)
         {
@@ -90,11 +90,13 @@ namespace AccountingProject
                 textBoxSecondName.BackColor = Color.White;
                 textBoxLastName.BackColor = Color.White;
                 textBoxPosition.BackColor = Color.White;
+                leaveNumber.BackColor = Color.White;
                 buttonAddPerson.BackColor = Color.SeaGreen;
                 textBoxFirstName.Text = "";
                 textBoxSecondName.Text = "";
                 textBoxLastName.Text = "";
                 textBoxPosition.Text = "";
+                leaveNumber.Value=40;
                 isRedacting = false;
             }
             else//make it to redact if false
@@ -103,6 +105,7 @@ namespace AccountingProject
                 textBoxSecondName.BackColor = Color.LightSalmon;
                 textBoxLastName.BackColor = Color.LightSalmon;
                 textBoxPosition.BackColor = Color.LightSalmon;
+                leaveNumber.BackColor = Color.LightSalmon;
                 buttonAddPerson.BackColor = Color.LightYellow;
                 Console.WriteLine("Workerstring="+workerString);
                 SearchForWorker(listViewPeople.SelectedItems[0]);
@@ -110,6 +113,7 @@ namespace AccountingProject
                 textBoxSecondName.Text = worker.secondName;
                 textBoxLastName.Text = worker.lastName;
                 textBoxPosition.Text = worker.position;
+                leaveNumber.Value = worker.leftDaysPerm;
                 isRedacting = true;
             }
         }
@@ -138,7 +142,7 @@ namespace AccountingProject
             {
                 if (isRedacting == false)
                 {
-                    worker = new Worker(textBoxFirstName.Text, textBoxSecondName.Text, textBoxLastName.Text, textBoxPosition.Text);
+                    worker = new Worker(textBoxFirstName.Text, textBoxSecondName.Text, textBoxLastName.Text, textBoxPosition.Text, Convert.ToInt32(leaveNumber.Value));
                     newWorkers.Add(worker);
                     ListViewItem item = new ListViewItem(worker.wholeName);
                     item.SubItems.Add(worker.id);
@@ -151,6 +155,8 @@ namespace AccountingProject
                     listViewPeople.SelectedItems[0].Remove();
                     oldWorkers.Add(worker);
                     worker.ChangeName(5, textBoxFirstName.Text, textBoxSecondName.Text, textBoxLastName.Text, textBoxPosition.Text);
+                    worker.position = textBoxPosition.Text;
+                    worker.ChangeLeftDaysPerm(Convert.ToInt32(leaveNumber.Value));
                     newWorkers.Add(worker);
                     ListViewItem item = new ListViewItem(worker.wholeName);
                     item.SubItems.Add(worker.id);
@@ -183,7 +189,14 @@ namespace AccountingProject
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            Worker.allWorkers.AddRange(newWorkers);
+            if (Worker.allWorkers != null)
+            {
+                Worker.allWorkers.AddRange(newWorkers);
+            }
+            else
+            {
+                Worker.allWorkers = newWorkers;
+            }
             foreach (Worker person in oldWorkers)
             {
                 try

@@ -37,6 +37,7 @@ namespace AccountingProject
             this.buttonExport = new System.Windows.Forms.Button();
             this.buttonImport = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.YearNumber)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,12 +140,16 @@ namespace AccountingProject
             this.label3.TabIndex = 6;
             this.label3.Text = "Import Backup:";
             // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog";
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(274, 275);
+            this.ClientSize = new System.Drawing.Size(274, 283);
             this.Controls.Add(this.buttonImport);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.buttonExport);
@@ -172,5 +177,6 @@ namespace AccountingProject
         private System.Windows.Forms.Button buttonExport;
         private System.Windows.Forms.Button buttonImport;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }

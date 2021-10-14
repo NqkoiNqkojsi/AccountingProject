@@ -84,6 +84,7 @@
     <Compile Include="Confrontation.Designer.cs">
       <DependentUpon>Confrontation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ChangeYear.cs" />
     <Compile Include="Controls\ConfrontingDates.cs" />
     <Compile Include="Controls\LoadingDB.cs" />
     <Compile Include="Controls\MakingMonthlyReport.cs" />
@@ -97,6 +98,7 @@
     </Compile>
     <Compile Include="Models\Counter.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\SettingModel.cs" />
     <Compile Include="Models\ShiftDay.cs" />
     <Compile Include="Models\WorkDay.cs" />
     <Compile Include="Models\Worker.cs" />
@@ -155,6 +157,7 @@
     </EmbeddedResource>
     <None Include="Database\counter2021.json" />
     <None Include="Database\people2021.json" />
+    <None Include="Database\setting.json" />
     <None Include="Database\shiftdays2021.json" />
     <None Include="Database\workdays2021.json" />
     <None Include="Database\workers2021.json" />
