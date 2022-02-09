@@ -9,7 +9,7 @@ namespace AccountingProject.Controls
 {
     class ChangeYear//change concurrent year
     {
-        static public void PopulateDB()
+        static public void PopulateDB()//generates a list of all people completely striped
         {
             foreach(Worker worker in Worker.allWorkers)
             {
@@ -22,34 +22,42 @@ namespace AccountingProject.Controls
             LoadingDB.SerializeWorkers(Worker.allWorkers);
         }
 
-        static public void MakeNewDB()
+        static public void MakeNewYearDB()//outdated method don't know why I have kept it
         {
-            Person.allPeople = LoadingDB.DeserializePeople();
-            List<Worker> workers = LoadingDB.DeserializeWorkers();
-            WorkDay.allDays = LoadingDB.DeserializeWorkDays();
-            ShiftDay.allDays = LoadingDB.DeserializeShiftDays();
-            if (workers != null)
+            foreach(Worker worker in Worker.allWorkers)//clear all the specific elements for a year
             {
-                foreach (Worker worker in workers)
+                worker.leftDays += worker.leftDaysPerm;
+                worker.daysShift.Clear();
+                worker.daysLeaves.Clear();
+                for(int i=0; i<worker.Summary.Count();i++)
                 {
-                    worker.MakeSummary();
+                    worker.Summary[i] = "";
                 }
-                Worker.allWorkers = workers;
-            }
-            else
-            {
-                PopulateDB();
-            }
+            }//save it to the new year DB
+            LoadingDB.SerializeWorkers(Worker.allWorkers);
         }
 
         static public void Check()
         {
-            if (SettingModel.NewYear != DateTime.Now.Year)
+            LoadingDB.GetSettings();
+            if (SettingModel.lastUpdate + 7 <= DateTime.Now.DayOfYear)//makes an automatic backup every 7 days
             {
-                SettingModel.NewYear = DateTime.Now.Year;
-                SettingModel.year = SettingModel.NewYear;
-                MakeNewDB();
+                SettingModel.lastUpdate = DateTime.Now.DayOfYear;
+                LoadingDB.SerializeSettings(SettingModel.SettingsObj());
+                BackupHandling.Export(false);
             }
+            if (SettingModel.NewYear != DateTime.Now.Year)//checks if its a new year
+            {
+                SettingModel.NewYear = DateTime.Now.Year;//updates the settings
+                SettingModel.year = SettingModel.NewYear;
+                if (Worker.allWorkers.Count() > 0)
+                {
+                    PopulateDB();
+                }
+                SettingModel.lastUpdate = DateTime.Now.DayOfYear;
+                LoadingDB.SerializeSettings(SettingModel.SettingsObj());
+            }
+            LoadingDB.MakeDBReady();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using Newtonsoft.Json;
 using AccountingProject.Models;
 
@@ -26,6 +27,10 @@ namespace AccountingProject.Controls
             _counterShiftDays = c;
         }
 
+        static private bool IsDirectoryEmpty(string path)
+        {
+            return !Directory.EnumerateFileSystemEntries(path).Any();
+        }
         static private bool CheckAndCreate(string name)
         {
             if (System.IO.File.Exists(@"..\..\Database\"+name))
@@ -40,26 +45,14 @@ namespace AccountingProject.Controls
 
         static public bool IsDBEmpty()
         {
-            if (CheckAndCreate("people" + SettingModel.year + ".json"))
-            {
-                string text = System.IO.File.ReadAllText(@"..\..\Database\workers" + SettingModel.year + ".json");
-                Console.WriteLine($"text={text}");
-                if (text.Length < 5)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            return false;
+            //Checks if the database directory is empty so to know if this is a new program
+            return !Directory.EnumerateFileSystemEntries(@"..\..\Database").Any();
         }
         static public void MakeDBReady()
         {
             if (CheckAndCreate("counter" + SettingModel.year + ".json"))
             {
-                string text = System.IO.File.ReadAllText(@"..\..\Database\counter" + SettingModel.year + ".json");
+                string text = File.ReadAllText(@"..\..\Database\counter" + SettingModel.year + ".json");
                 try
                 {
                     Counter obj = JsonConvert.DeserializeObject<Counter>(text);
@@ -76,18 +69,40 @@ namespace AccountingProject.Controls
                     Counter.counterShiftDays = 0;
                 }
             }
+            Worker.allWorkers = DeserializeWorkers();
+            WorkDay.allDays = DeserializeWorkDays();
+            ShiftDay.allDays = DeserializeShiftDays();
+        }
+
+        static public void GetSettings()
+        {
+            if (CheckAndCreate("setting.json"))//get the year from the last log
+            {
+                string text = File.ReadAllText(@"..\..\Database\setting.json");
+                try
+                {
+                    SettingModel obj= JsonConvert.DeserializeObject<SettingModel>(text);
+                    obj.SettingsSave();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Failed checking settings= " + ex + '\n');
+                    SettingModel.NewYear = 2020;//DateTime.Now.Year;
+                    SettingModel.lastUpdate = 0;
+                }
+            }
         }
         static public void UpdateCounterDB()
         {
             Counter obj = new Counter(Counter.counterWorker, Counter.counterWorkDays, Counter.counterShiftDays);
-            System.IO.File.WriteAllText(@"..\..\Database\counter" + SettingModel.year + ".json", JsonConvert.SerializeObject(obj));
+            File.WriteAllText(@"..\..\Database\counter" + SettingModel.year + ".json", JsonConvert.SerializeObject(obj));
         }
 
         static public List<Person> DeserializePeople()
         {
             if (CheckAndCreate("people" + SettingModel.year + ".json"))
             {
-                string text = System.IO.File.ReadAllText(@"..\..\Database\people"+ SettingModel.year + ".json");
+                string text = File.ReadAllText(@"..\..\Database\people"+ SettingModel.year + ".json");
                 try
                 {
                     return JsonConvert.DeserializeObject<List<Person>>(text);
@@ -99,14 +114,14 @@ namespace AccountingProject.Controls
             }
             else
             {
-                return null;
+                return new List<Person>();
             }
         }
         static public List<Worker> DeserializeWorkers()
         {
             if (CheckAndCreate("workers" + SettingModel.year + ".json"))
             {
-                string text = System.IO.File.ReadAllText(@"..\..\Database\workers" + SettingModel.year + ".json");
+                string text = File.ReadAllText(@"..\..\Database\workers" + SettingModel.year + ".json");
                 if (text.Length > 2)
                 {
                     try
@@ -120,13 +135,13 @@ namespace AccountingProject.Controls
                     }
                 }
             }
-            return null;
+            return new List<Worker>();
         }
         static public List<WorkDay> DeserializeWorkDays()
         {
             if (CheckAndCreate("workdays" + SettingModel.year + ".json"))
             {
-                string text = System.IO.File.ReadAllText(@"..\..\Database\workdays" + SettingModel.year + ".json");
+                string text = File.ReadAllText(@"..\..\Database\workdays" + SettingModel.year + ".json");
                 if (text.Length > 2)
                 {
                     try
@@ -141,14 +156,14 @@ namespace AccountingProject.Controls
                     }
                 }
             }
-            return null;
+            return new List<WorkDay>();
 
         }
         static public List<ShiftDay> DeserializeShiftDays()
         {
             if (CheckAndCreate("shiftdays" + SettingModel.year + ".json"))
             {
-                string text = System.IO.File.ReadAllText(@"..\..\Database\shiftdays" + SettingModel.year + ".json");
+                string text = File.ReadAllText(@"..\..\Database\shiftdays" + SettingModel.year + ".json");
                 if (text.Length > 2)
                 {
                     try
@@ -162,24 +177,28 @@ namespace AccountingProject.Controls
                     }
                 }
             }
-            return null;
+            return new List<ShiftDay>();
+        }
+        static public void SerializeSettings(SettingModel setting)
+        {
+            File.WriteAllText(@"..\..\Database\setting.json", JsonConvert.SerializeObject(setting));
         }
         static public void SerializePeople(List<Person> workers)
         {
-            System.IO.File.WriteAllText(@"..\..\Database\people" + SettingModel.year + ".json", JsonConvert.SerializeObject(workers));
+            File.WriteAllText(@"..\..\Database\people" + SettingModel.year + ".json", JsonConvert.SerializeObject(workers));
         }
         static public void SerializeWorkers(List<Worker> workers)
         {
             CheckAndCreate("workers" + SettingModel.year + ".json");
-            System.IO.File.WriteAllText(@"..\..\Database\workers" + SettingModel.year + ".json", JsonConvert.SerializeObject(workers));
+            File.WriteAllText(@"..\..\Database\workers" + SettingModel.year + ".json", JsonConvert.SerializeObject(workers));
         }
         static public void SerializeWorkDays(List<WorkDay> workers)
         {
-            System.IO.File.WriteAllText(@"..\..\Database\workdays" + SettingModel.year + ".json", JsonConvert.SerializeObject(workers));
+            File.WriteAllText(@"..\..\Database\workdays" + SettingModel.year + ".json", JsonConvert.SerializeObject(workers));
         }
         static public void SerializeShiftDays(List<ShiftDay> workers)
         {
-            System.IO.File.WriteAllText(@"..\..\Database\shiftdays" + SettingModel.year + ".json", JsonConvert.SerializeObject(workers));
+            File.WriteAllText(@"..\..\Database\shiftdays" + SettingModel.year + ".json", JsonConvert.SerializeObject(workers));
         }
     }
 }

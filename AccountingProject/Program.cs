@@ -26,7 +26,7 @@ namespace AccountingProject
             else
             {
                 //LoadingDB.MakeDBReady();
-                ChangeYear.MakeNewDB();
+                ChangeYear.Check();
                 Application.Run(new MainPage(false));
             }
         }
